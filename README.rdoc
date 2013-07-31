@@ -38,6 +38,7 @@ clone the example in this git repo.
 This is easy.
 
 Anything will do.  I happened to pick a sandwich theme.
+(Sandwich.java[link:src/main/java/org/reliacode/Sandwich.java])
 
 == Write some RSpec tests... sorta
 
