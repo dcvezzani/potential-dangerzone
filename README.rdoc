@@ -11,9 +11,19 @@ when I'm feeling cramped.  I am also using Maven to pull in all my needed
 resources.
 
 Create a new Maven Project (of course, this assumes you have installed the Maven
-plugin for Eclipse).  Make sure to check "Create a simple project (skip
-archetype selection; we want to keep this simple).  When prompted, supply a
-groupId and an artifactId.
+plugin for Eclipse).
+
+link:src/main/resources/new-maven-project.png
+
+FYI, here are the plugins I have installed.
+
+link:src/main/resources/eclipse-plug-ins.png
+
+Make sure to check "Create a simple project (skip archetype selection; we want to keep this simple).  
+
+link:src/main/resources/create-a-simple-project.png
+
+When prompted, supply a groupId and an artifactId.
 
     groupId: org.reliacode
     artifactId: jtestr-example
@@ -31,7 +41,7 @@ Anything will do.  I happened to pick a sandwich theme.
 
 == Write some RSpec tests... sorta
 
-I say sorta because I haven't figured out how to tap into JTestR's pure RSpec
+I say 'sorta' because I haven't figured out how to tap into JTestR's pure RSpec
 resource.  It seems to be a mix of Mocha and RSpec.  Perhaps RSpec isn't even in
 there.  I'll get back to that in a bit.
 
