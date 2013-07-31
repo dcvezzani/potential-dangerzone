@@ -1,0 +1,121 @@
+== JTestR
+
+I'm not sure why this nifty little tool appears to have fallen off the map, but
+it seems harder and harder to find helpful blog and forum entries.  The best
+resource so far is JTestR's site itself: http://jtestr.codehaus.org/Getting+Started
+
+== Set up
+
+I'm currently using Eclipse IDE (Juno) and I pop over frequently to edit using GVim
+when I'm feeling cramped.  I am also using Maven to pull in all my needed
+resources.
+
+Create a new Maven Project (of course, this assumes you have installed the Maven
+plugin for Eclipse).  Make sure to check "Create a simple project (skip
+archetype selection; we want to keep this simple).  When prompted, supply a
+groupId and an artifactId.
+
+    groupId: org.reliacode
+    artifactId: jtestr-example
+
+If you have Juno Eclipse installed with the Maven plugin, you should be able to
+clone the example in this git repo.
+
+    git clone git@github.com:dcvezzani/potential-dangerzone.git jtestr-example
+
+== Write some Java
+
+This is easy.
+
+Anything will do.  I happened to pick a sandwich theme.
+
+== Write some RSpec tests... sorta
+
+I say sorta because I haven't figured out how to tap into JTestR's pure RSpec
+resource.  It seems to be a mix of Mocha and RSpec.  Perhaps RSpec isn't even in
+there.  I'll get back to that in a bit.
+
+In any case, some important points are that we want our tests to have access to
+our Java code, not just the Java code that is core to the JRE.
+
+    include Java
+
+https://blogs.oracle.com/coolstuff/entry/using_java_classes_in_jruby
+
+Next, include all your classes that are used directly and indirectly.  
+
+    import "org.reliacode.Sandwich"
+
+If they are outside of your project in a jar file, include the jar.  It seems
+when resources are required as jars that you won't need to use "import".
+
+E.g., 
+    base_path = "/Users/abc/workspace/cust-proj"
+
+    jars = %w{
+    ./webapp/target/cust/WEB-INF/lib/aopalliance-1.0.jar
+    ./webapp/target/cust/WEB-INF/lib/asm-3.3.1.jar
+    ./webapp/target/cust/WEB-INF/lib/c3p0-0.9.1.jar
+    ./webapp/target/cust/WEB-INF/lib/commons-collections-3.2.1.jar
+    ./webapp/target/cust/WEB-INF/lib/commons-logging-1.1.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-api-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-bindings-soap-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-bindings-xml-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-core-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-databinding-jaxb-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-frontend-jaxws-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-frontend-simple-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-transports-http-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-ws-addr-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-rt-ws-policy-2.7.1.jar
+    ./webapp/target/cust/WEB-INF/lib/cxf-xjc-runtime-2.6.0.jar
+    }
+
+    jars.each{|jar| require "#{base_path}/#{jar}"}
+
+Finally, we get to the meat of our tests!  See
+"sandwich_spec.rb"[https://github.com/dcvezzani/potential-dangerzone/blob/master/src/test/rspec/sandwich_spec.rb]
+for an example.
+
+== What about testing through Eclipse?
+
+This should take care of you.  It worked great for me.
+
+    JRuby & JTestR in Eclipse
+     
+    In your eclipse Package Manager sidebar, 
+      Right Click -#> 
+      Run As.. -#> 
+      Run Configurations. Go ahead and select ‘JUnit’ and hit the 
+                          ‘New Launch Configuration’ button.
+     
+    Fill in the configuration as follows:
+     
+    * Run a single test
+    Project: your-project-name
+    Test class: org.jtestr.ant.JtestRSuite
+    Now just open the ‘Arguments’ tab and inside the ‘VM arguments:’ box
+     
+    -Djtestr.junit.tests=rspec_tests
+    rspec_tests is the folder where my tests are stored, feel free to change 
+      this to something like /test/jtestr/funny_test or whatever structure you 
+      store your files in.
+
+https://gist.github.com/peterlind/660434
+
+== Run the tests
+
+Through Eclipse, use the specific run configuration created above.
+
+Through maven,
+
+    mvn package
+
+== The problem
+
+The grief I have is with the fact that stubs work while execution is still in
+the *.rb file, they aren't persisted in the Java code and I'm not able to have
+very effective tests.
+
+I'm sure it's something small, but I haven't figured it out yet.  There will be
+much rejoicing when I do.
