@@ -74,7 +74,7 @@ E.g.,
     jars.each{|jar| require "#{base_path}/#{jar}"}
 
 Finally, we get to the meat of our tests!  See
-sandwich_spec.rb[https://github.com/dcvezzani/potential-dangerzone/blob/master/src/test/rspec/sandwich_spec.rb]
+sandwich_spec.rb[link:src/test/rspec/sandwich_spec.rb]
 for an example.
 
 == What about testing through Eclipse?
