@@ -2,7 +2,7 @@
 
 I'm not sure why this nifty little tool appears to have fallen off the map, but
 it seems harder and harder to find helpful blog and forum entries.  The best
-resource so far is JTestR's site itself: http://jtestr.codehaus.org/Getting+Started
+resource so far is JTestR's site[http://jtestr.codehaus.org/Getting+Started] itself.
 
 == Set up
 
@@ -40,7 +40,7 @@ our Java code, not just the Java code that is core to the JRE.
 
     include Java
 
-https://blogs.oracle.com/coolstuff/entry/using_java_classes_in_jruby
+Explanation[https://blogs.oracle.com/coolstuff/entry/using_java_classes_in_jruby]
 
 Next, include all your classes that are used directly and indirectly.  
 
@@ -74,7 +74,7 @@ E.g.,
     jars.each{|jar| require "#{base_path}/#{jar}"}
 
 Finally, we get to the meat of our tests!  See
-"sandwich_spec.rb"[https://github.com/dcvezzani/potential-dangerzone/blob/master/src/test/rspec/sandwich_spec.rb]
+sandwich_spec.rb[https://github.com/dcvezzani/potential-dangerzone/blob/master/src/test/rspec/sandwich_spec.rb]
 for an example.
 
 == What about testing through Eclipse?
@@ -101,7 +101,7 @@ This should take care of you.  It worked great for me.
       this to something like /test/jtestr/funny_test or whatever structure you 
       store your files in.
 
-https://gist.github.com/peterlind/660434
+Credits[https://gist.github.com/peterlind/660434]
 
 == Run the tests
 
