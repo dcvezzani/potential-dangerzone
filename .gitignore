@@ -1,0 +1,8 @@
+tmp/
+*.sw*
+.*.sw*
+.DS_Store
+*.log
+*.session
+target/
+*.class
