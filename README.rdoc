@@ -58,8 +58,8 @@ Next, include all your classes that are used directly and indirectly.
     import "org.reliacode.Sandwich"
 
 If they are outside of your project in a jar file, include the jar.  It seems
-when resources are required as jars that you won't need to use "import".  _These
-aren't needed for this example, but I thought I would include my findings._
+when resources are required as jars that you won't need to use "import".  <em>These
+aren't needed for this example, but I thought I would include my findings.</em>
 
 E.g., 
     base_path = "/Users/abc/workspace/cust-proj"
